@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://djbo77imldrf5"]
+
+[ext_resource type="Script" uid="uid://bl3hj2n7qeg7g" path="res://scripts/main_menu.gd" id="1_bqqt6"]
+[ext_resource type="PackedScene" uid="uid://bc72nuxpjjlyg" path="res://sea_world.tscn" id="1_ekxnf"]
+[ext_resource type="Theme" uid="uid://y58cykg5dymk" path="res://ui/themes/main_menu.tres" id="2_bqqt6"]
+
+[node name="MainMenu" type="Node3D" unique_id=828427611]
+script = ExtResource("1_bqqt6")
+
+[node name="SeaWorld" parent="." unique_id=621661128 instance=ExtResource("1_ekxnf")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1788039334]
+transform = Transform3D(0.81053114, 0.05255252, -0.58333313, 0, 0.99596643, 0.08972669, 0.58569556, -0.07272627, 0.8072618, -27.973661, 15.580611, 60.06601)
+
+[node name="CameraMarkers" type="Node3D" parent="." unique_id=1323000099]
+
+[node name="Default" type="Marker3D" parent="CameraMarkers" unique_id=801566627]
+transform = Transform3D(0.81053114, 0.05255252, -0.58333313, 0, 0.99596643, 0.08972669, 0.58569556, -0.07272627, 0.8072618, -27.973661, 15.580611, 60.06601)
+
+[node name="Play" type="Marker3D" parent="CameraMarkers" unique_id=1860964014]
+transform = Transform3D(0.12875934, 0.20868383, -0.96947, 0, 0.9776078, 0.21043552, 0.99167585, -0.02709554, 0.12587614, -10.298103, 7.036422, 54.50177)
+
+[node name="Settings" type="Marker3D" parent="CameraMarkers" unique_id=576821869]
+transform = Transform3D(0.82513446, 0.0034718947, 0.56492573, 0, 0.99998116, -0.006145638, -0.5649364, 0.005070978, 0.82511884, 25.304129, 14.933825, 42.3877)
+
+[node name="Quit" type="Marker3D" parent="CameraMarkers" unique_id=1027336766]
+transform = Transform3D(-0.16680525, 0.019752245, -0.985792, 0, 0.9997993, 0.020032907, 0.98598987, 0.0033415945, -0.16677177, -13.778923, 7.6434083, 20.268753)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=522683070]
+
+[node name="Label" type="Label" parent="UI" unique_id=1078296125]
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.052
+anchor_right = 0.075
+anchor_bottom = 0.278
+offset_right = 1072.0
+offset_bottom = 58.0
+theme = ExtResource("2_bqqt6")
+theme_type_variation = &"TitleLabel"
+theme_override_font_sizes/font_size = 200
+text = "Name of Game"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=1322505157]
+anchors_preset = -1
+anchor_left = 0.043
+anchor_top = 0.5
+anchor_right = 0.078
+anchor_bottom = 0.5
+offset_top = -50.5
+offset_right = 70.0
+offset_bottom = 50.5
+grow_vertical = 2
+theme = ExtResource("2_bqqt6")
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="UI/VBoxContainer" unique_id=377273876]
+layout_mode = 2
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="UI/VBoxContainer" unique_id=763823466]
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="UI/VBoxContainer" unique_id=638762134]
+layout_mode = 2
+text = "Quit"
+
+[node name="Fade" type="ColorRect" parent="UI" unique_id=936058674]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
