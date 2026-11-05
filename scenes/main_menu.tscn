@@ -18,10 +18,10 @@ transform = Transform3D(0.81053114, 0.05255252, -0.58333313, 0, 0.99596643, 0.08
 transform = Transform3D(0.81053114, 0.05255252, -0.58333313, 0, 0.99596643, 0.08972669, 0.58569556, -0.07272627, 0.8072618, -27.973661, 15.580611, 60.06601)
 
 [node name="Play" type="Marker3D" parent="CameraMarkers" unique_id=1860964014]
-transform = Transform3D(0.12875934, 0.20868383, -0.96947, 0, 0.9776078, 0.21043552, 0.99167585, -0.02709554, 0.12587614, -10.298103, 7.036422, 54.50177)
+transform = Transform3D(0.18906026, 0.0762659, -0.9789994, 0, 0.9969794, 0.07766658, 0.9819655, -0.014683664, 0.18848918, -10.574341, 5.929199, 51.19246)
 
 [node name="Settings" type="Marker3D" parent="CameraMarkers" unique_id=576821869]
-transform = Transform3D(0.82513446, 0.0034718947, 0.56492573, 0, 0.99998116, -0.006145638, -0.5649364, 0.005070978, 0.82511884, 25.304129, 14.933825, 42.3877)
+transform = Transform3D(0.7671891, -0.08813603, 0.6353369, 0, 0.99051464, 0.13740747, -0.64142096, -0.10541751, 0.759912, 16.93158, 18.602516, 48.720764)
 
 [node name="Quit" type="Marker3D" parent="CameraMarkers" unique_id=1027336766]
 transform = Transform3D(-0.16680525, 0.019752245, -0.985792, 0, 0.9997993, 0.020032907, 0.98598987, 0.0033415945, -0.16677177, -13.778923, 7.6434083, 20.268753)
@@ -43,15 +43,16 @@ text = "Name of Game"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=1322505157]
 anchors_preset = -1
-anchor_left = 0.043
-anchor_top = 0.5
-anchor_right = 0.078
-anchor_bottom = 0.5
+anchor_left = 0.073
+anchor_top = 0.568
+anchor_right = 0.096
+anchor_bottom = 0.568
 offset_top = -50.5
-offset_right = 70.0
+offset_right = 256.0
 offset_bottom = 50.5
 grow_vertical = 2
 theme = ExtResource("2_bqqt6")
+theme_override_constants/separation = 28
 alignment = 1
 
 [node name="PlayButton" type="Button" parent="UI/VBoxContainer" unique_id=377273876]
@@ -74,3 +75,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1643971198]
+transform = Transform3D(-1, -1.5257423e-09, -8.740946e-08, 0, -0.9998477, 0.017452458, -8.742278e-08, 0.017452458, 0.9998477, 0, 0, 0)
