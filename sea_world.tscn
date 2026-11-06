@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bc72nuxpjjlyg"]
 
 [ext_resource type="PackedScene" uid="uid://bmp1h655lfnnx" path="res://assets/glb_models/ship-medium.glb" id="1_xyru2"]
+[ext_resource type="Script" uid="uid://c47uav5oi5htx" path="res://assets/glb_models/ship_player.gd" id="2_727js"]
 [ext_resource type="PackedScene" uid="uid://pwi41r3172hn" path="res://assets/glb_models/tower-roof.glb" id="2_rko62"]
 [ext_resource type="PackedScene" uid="uid://vx6s7jso2fgh" path="res://assets/glb_models/tower-base.glb" id="3_0xv7f"]
 [ext_resource type="PackedScene" uid="uid://8di7ujrofn4x" path="res://assets/glb_models/patch-grass-foliage.glb" id="4_hgr2b"]
@@ -56,7 +57,17 @@ mesh = SubResource("PlaneMesh_j0s2x")
 surface_material_override/0 = SubResource("StandardMaterial3D_860br")
 
 [node name="ShipPlayer" parent="." unique_id=583563456 instance=ExtResource("1_xyru2")]
-transform = Transform3D(-0.98383313, 0, 0.17908773, 0, 1, 0, -0.17908773, 0, -0.98383313, 0, -0.19490814, 52.44451)
+transform = Transform3D(-0.98383313, 0, 0.17908773, 0, 1, 0, -0.17908773, 0, -0.98383313, -0.058, -0.194, 55)
+script = ExtResource("2_727js")
+cam_distance = 15.0
+cam_height = 15.0
+cam_follow_speed = 2.0
+cam_fov = 90.0
+model_faces_positive_z = true
+
+[node name="CameraRig" type="Node3D" parent="ShipPlayer" unique_id=804065122]
+
+[node name="Camera3D" type="Camera3D" parent="ShipPlayer/CameraRig" unique_id=740675059]
 
 [node name="HomeIsland" type="Node3D" parent="." unique_id=944394492]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40.839478)
@@ -225,3 +236,5 @@ transform = Transform3D(0.23090932, 0, -0.97297525, 0, 1, 0, 0.97297525, 0, 0.23
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=821425168]
 environment = SubResource("Environment_xvksl")
+
+[editable path="ShipPlayer"]
