@@ -40,6 +40,13 @@ text = "Player"
 [node name="PlayerBar" type="ProgressBar" parent="HUD/HealthBars/PlayerBox"]
 layout_mode = 2
 
+[node name="HingerLabel" type="Label" parent="HUD/HealthBars/PlayerBox"]
+layout_mode = 2
+text = "Hunger"
+
+[node name="HungerBar" type="ProgressBar" parent="HUD/HealthBars/PlayerBox"]
+layout_mode = 2
+
 [node name="Spacer" type="Control" parent="HUD/HealthBars"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -57,7 +64,41 @@ horizontal_alignment = 2
 [node name="EnemyBar" type="ProgressBar" parent="HUD/HealthBars/EnemyBox"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ResourcePanel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -38.5
+offset_bottom = 38.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ResourceList" type="VBoxContainer" parent="ResourcePanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="AmmoLabel" type="Label" parent="ResourcePanel/ResourceList"]
+layout_mode = 2
+
+[node name="FoodLabel" type="Label" parent="ResourcePanel/ResourceList"]
+layout_mode = 2
+
+[node name="CoinLabel" type="Label" parent="ResourcePanel/ResourceList"]
+layout_mode = 2
+
+[node name="WeightLabel" type="Label" parent="ResourcePanel/ResourceList"]
+layout_mode = 2
+
+[node name="WeightBar" type="ProgressBar" parent="ResourcePanel/ResourceList"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,34 +108,49 @@ grow_vertical = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="GridHolder" type="Control" parent="VBoxContainer"]
+[node name="GridHolder" type="Control" parent="VBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Grid" type="GridContainer" parent="VBoxContainer/GridHolder"]
+[node name="Grid" type="GridContainer" parent="VBox/GridHolder"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="MidLine" type="ColorRect" parent="VBoxContainer/GridHolder"]
+[node name="MidLine" type="ColorRect" parent="VBox/GridHolder"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Buttons" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="MoveButton" type="Button" parent="VBoxContainer/Buttons"]
+[node name="MoveButton" type="Button" parent="VBox/Buttons"]
 layout_mode = 2
 text = "Move"
 
-[node name="AttackButton" type="Button" parent="VBoxContainer/Buttons"]
+[node name="AttackButton" type="Button" parent="VBox/Buttons"]
 layout_mode = 2
 text = "Attack"
 
-[node name="StatusLabel" type="Label" parent="VBoxContainer"]
+[node name="EatButton" type="Button" parent="VBox/Buttons"]
+layout_mode = 2
+text = "Eat"
+
+[node name="AttackOptions" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="SingleButton" type="Button" parent="VBox/AttackOptions"]
+layout_mode = 2
+
+[node name="AoeButton" type="Button" parent="VBox/AttackOptions"]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="VBox"]
 layout_mode = 2
 horizontal_alignment = 1
