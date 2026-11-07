@@ -68,6 +68,22 @@ func _ready() -> void:
 		items[type] = 0
 	current_health = get_value("player_health")
 
+# ---------------------------------------------------------------- Zones & encounters
+const DEFAULT_ENEMY_LEVEL := 1
+
+## Enemy level for each map zone. Edit a number here to change a zone's difficulty.
+var zone_levels: Dictionary = {
+	"zone1": 1,
+	"zone2": 2,
+	"zone3": 3,
+}
+
+var enemy_level: int = DEFAULT_ENEMY_LEVEL   # level of the encounter being fought
+
+
+## Call this right before loading the combat scene.
+func start_encounter(zone: String) -> void:
+	enemy_level = int(zone_levels.get(zone, DEFAULT_ENEMY_LEVEL))
 
 # ================================================================ Generic upgrade API
 

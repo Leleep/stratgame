@@ -9,7 +9,9 @@ const SEP := 2
 const MID_THICKNESS := 4
 
 # ---------- enemy stats (player stats come from GameManager) ----------
-const ENEMY_MAX_HP := 100
+const ENEMY_BASE_HP := 100               # HP at level 1
+const ENEMY_HP_PER_LEVEL := 20           # extra HP per level above 1
+const ENEMY_DAMAGE_PER_LEVEL := 0.15     # +15% damage per level above 1
 const ENEMY_SINGLE_DAMAGE := 12
 const ENEMY_AOE_CENTER_DAMAGE := 18
 const ENEMY_AOE_EDGE_DAMAGE := 7
@@ -52,11 +54,14 @@ enum Mode { NONE, MOVE, SINGLE, AOE, EAT }
 @onready var coin_label: Label = $ResourcePanel/ResourceList/CoinLabel
 @onready var weight_label: Label = $ResourcePanel/ResourceList/WeightLabel
 @onready var weight_bar: ProgressBar = $ResourcePanel/ResourceList/WeightBar
+@onready var enemy_label: Label = $HUD/HealthBars/EnemyBox/EnemyLabel
 
 var cells: Array[ColorRect] = []
 var player_pos := Vector2i(HALF, GRID_SIZE - 2)
 var enemy_pos := Vector2i(HALF - 1, 1)
-var enemy_hp := ENEMY_MAX_HP
+var enemy_level := 1
+var enemy_max_hp := ENEMY_BASE_HP
+var enemy_hp := ENEMY_BASE_HP
 var mode := Mode.NONE
 var busy := false
 var game_over := false
@@ -74,13 +79,18 @@ func _ready() -> void:
 	panel.offset_bottom = 90
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	
+	enemy_level = GameManager.enemy_level
+	enemy_max_hp = ENEMY_BASE_HP + ENEMY_HP_PER_LEVEL * (enemy_level - 1)
+	enemy_hp = enemy_max_hp
+	enemy_label.text = "Enemy  Lv %d" % enemy_level
+	
 	_build_grid()
 	_build_midline()
 	attack_options.hide()
 
 	for bar in [player_bar, hunger_bar, enemy_bar, weight_bar]:
 		bar.show_percentage = false
-	enemy_bar.max_value = ENEMY_MAX_HP
+	enemy_bar.max_value = enemy_max_hp     # was ENEMY_MAX_HP
 	player_bar.modulate = PLAYER_COLOR
 	hunger_bar.modulate = HUNGER_COLOR
 	enemy_bar.modulate = ENEMY_COLOR
@@ -138,6 +148,8 @@ func _build_midline() -> void:
 
 
 # ---------- helpers ----------
+func _level_damage(base: int) -> int:
+	return roundi(base * (1.0 + ENEMY_DAMAGE_PER_LEVEL * (enemy_level - 1)))
 
 func _compute_cell_size() -> void:
 	var available := MAX_GRID_PX - (GRID_SIZE - 1) * SEP
@@ -347,9 +359,9 @@ func _cells_hit(is_aoe: bool, center: Vector2i, hits_player_side: bool) -> Array
 # returns the damage dealt to whoever is standing on a covered cell.
 func _strike(by_player: bool, is_aoe: bool, center: Vector2i) -> int:
 	var victim_pos := enemy_pos if by_player else player_pos
-	var single_dmg := GameManager.get_single_attack_damage() if by_player else ENEMY_SINGLE_DAMAGE
-	var center_dmg := GameManager.get_aoe_damage(true) if by_player else ENEMY_AOE_CENTER_DAMAGE
-	var edge_dmg := GameManager.get_aoe_damage(false) if by_player else ENEMY_AOE_EDGE_DAMAGE
+	var single_dmg := GameManager.get_single_attack_damage() if by_player else _level_damage(ENEMY_SINGLE_DAMAGE)
+	var center_dmg := GameManager.get_aoe_damage(true) if by_player else _level_damage(ENEMY_AOE_CENTER_DAMAGE)
+	var edge_dmg := GameManager.get_aoe_damage(false) if by_player else _level_damage(ENEMY_AOE_EDGE_DAMAGE)
 
 	var damage := 0
 	for c in _cells_hit(is_aoe, center, not by_player):
