@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://bi1ffe0s5upd1"]
+
+[ext_resource type="Script" uid="uid://dw6maw6ltokxt" path="res://scripts/combatUI.gd" id="1_764e3"]
+
+[node name="Combat" type="Control" unique_id=863379919]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_764e3")
+
+[node name="HUD" type="MarginContainer" parent="." unique_id=915689957]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HealthBars" type="HBoxContainer" parent="HUD" unique_id=1436808182]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 40
+
+[node name="PlayerBox" type="VBoxContainer" parent="HUD/HealthBars" unique_id=2016163300]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+
+[node name="PlayerLabel" type="Label" parent="HUD/HealthBars/PlayerBox" unique_id=1076207042]
+layout_mode = 2
+text = "Player"
+
+[node name="PlayerBar" type="ProgressBar" parent="HUD/HealthBars/PlayerBox" unique_id=180038740]
+layout_mode = 2
+
+[node name="HingerLabel" type="Label" parent="HUD/HealthBars/PlayerBox" unique_id=1179969995]
+layout_mode = 2
+text = "Hunger"
+
+[node name="HungerBar" type="ProgressBar" parent="HUD/HealthBars/PlayerBox" unique_id=1894534566]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="HUD/HealthBars" unique_id=521445908]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="EnemyBox" type="VBoxContainer" parent="HUD/HealthBars" unique_id=1882360552]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+
+[node name="EnemyLabel" type="Label" parent="HUD/HealthBars/EnemyBox" unique_id=1059549886]
+layout_mode = 2
+text = "Enemy"
+horizontal_alignment = 2
+
+[node name="EnemyBar" type="ProgressBar" parent="HUD/HealthBars/EnemyBox" unique_id=2109086296]
+layout_mode = 2
+
+[node name="ResourcePanel" type="PanelContainer" parent="." unique_id=792929608]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -38.5
+offset_bottom = 38.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ResourceList" type="VBoxContainer" parent="ResourcePanel" unique_id=1782796758]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="AmmoLabel" type="Label" parent="ResourcePanel/ResourceList" unique_id=1133911378]
+layout_mode = 2
+
+[node name="FoodLabel" type="Label" parent="ResourcePanel/ResourceList" unique_id=441404816]
+layout_mode = 2
+
+[node name="CoinLabel" type="Label" parent="ResourcePanel/ResourceList" unique_id=245223443]
+layout_mode = 2
+
+[node name="WeightLabel" type="Label" parent="ResourcePanel/ResourceList" unique_id=1232550471]
+layout_mode = 2
+
+[node name="WeightBar" type="ProgressBar" parent="ResourcePanel/ResourceList" unique_id=1887184551]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=1853821148]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="GridHolder" type="Control" parent="VBox" unique_id=139364209]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Grid" type="GridContainer" parent="VBox/GridHolder" unique_id=1781473305]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MidLine" type="ColorRect" parent="VBox/GridHolder" unique_id=1683385183]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Buttons" type="HBoxContainer" parent="VBox" unique_id=763538631]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="MoveButton" type="Button" parent="VBox/Buttons" unique_id=1728270572]
+layout_mode = 2
+text = "Move"
+
+[node name="AttackButton" type="Button" parent="VBox/Buttons" unique_id=954719721]
+layout_mode = 2
+text = "Attack"
+
+[node name="EatButton" type="Button" parent="VBox/Buttons" unique_id=1903393089]
+layout_mode = 2
+text = "Eat"
+
+[node name="AttackOptions" type="HBoxContainer" parent="VBox" unique_id=1459450406]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="SingleButton" type="Button" parent="VBox/AttackOptions" unique_id=707956792]
+layout_mode = 2
+
+[node name="AoeButton" type="Button" parent="VBox/AttackOptions" unique_id=1113927954]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="VBox" unique_id=981080348]
+layout_mode = 2
+horizontal_alignment = 1
